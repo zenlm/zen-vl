@@ -1,0 +1,37 @@
+# Zen VL Requirements
+# Python 3.13 required
+
+# Core ML/DL
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Transformers (dev version for Qwen3-VL)
+transformers>=4.50.0
+accelerate>=0.24.0
+datasets>=2.14.0
+
+# Quantization
+bitsandbytes>=0.41.0
+
+# Image/Video processing
+pillow>=10.0.0
+opencv-python>=4.8.0
+
+# Utilities
+requests>=2.31.0
+tqdm>=4.66.0
+numpy>=1.24.0
+
+# HuggingFace
+huggingface-hub>=0.17.0
+
+# Optional: MLX for Apple Silicon
+# mlx>=0.0.9
+
+# Optional: Flash Attention 2
+# flash-attn>=2.3.0
+
+# Development
+pytest>=7.4.0
+black>=23.7.0

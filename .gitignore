@@ -1,0 +1,68 @@
+# Symlinked AI knowledge files
+AGENTS.md
+CLAUDE.md
+QWEN.md
+GEMINI.md
+
+# Model files - NEVER commit these!
+*/base-model/
+*/finetuned/
+*.safetensors
+*.bin
+*.pth
+*.pt
+*.ckpt
+*.gguf
+*.mlx
+
+# Training artifacts
+*/training/
+logs/
+wandb/
+*.log
+
+# Quantized models
+gguf/
+mlx/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+.pytest_cache/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# HuggingFace cache
+.cache/
+huggingface/
+
+# Paper build artifacts
+paper/*.pdf
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+
+# Uploads
+UPLOAD_SUMMARY.md
