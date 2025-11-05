@@ -1,7 +1,11 @@
-.PHONY: help download-4b download-8b download-30b download-all train-instruct train-agent all test clean
+.PHONY: help download-4b download-8b download-30b download-all download-agent-data prepare-agent-data train-instruct train-agent all test clean
 
 # Default model size
 SIZE ?= 4b
+
+# Virtual environment
+VENV := .venv
+PYTHON := $(VENV)/bin/python
 
 # Colors for output
 GREEN := \033[0;32m
@@ -17,15 +21,17 @@ help:
 	@echo "$(CYAN)=====================================$(NC)"
 	@echo ""
 	@echo "$(YELLOW)Download Commands:$(NC)"
-	@echo "  make download-4b      Download Qwen3-VL-4B base model"
-	@echo "  make download-8b      Download Qwen3-VL-8B base model"
-	@echo "  make download-30b     Download Qwen3-VL-30B base model"
-	@echo "  make download-all     Download all base models"
+	@echo "  make download-4b         Download Qwen3-VL-4B base model"
+	@echo "  make download-8b         Download Qwen3-VL-8B base model"
+	@echo "  make download-30b        Download Qwen3-VL-30B base model"
+	@echo "  make download-all        Download all base models"
+	@echo "  make download-agent-data Download neulab/agent-data-collection"
+	@echo "  make prepare-agent-data  Prepare agent data for training"
 	@echo ""
 	@echo "$(YELLOW)Training Commands:$(NC)"
-	@echo "  make train-instruct   Train Zen identity model (SIZE=4b|8b|30b)"
-	@echo "  make train-agent      Train function calling model"
-	@echo "  make all              Complete training pipeline"
+	@echo "  make train-instruct      Train Zen identity model (SIZE=4b|8b|30b)"
+	@echo "  make train-agent         Train function calling model"
+	@echo "  make all                 Complete training pipeline"
 	@echo ""
 	@echo "$(YELLOW)Utilities:$(NC)"
 	@echo "  make test             Test all trained models"
@@ -56,14 +62,48 @@ download-all:
 	@echo "$(BLUE)Downloading all Qwen3-VL models...$(NC)"
 	python3.13 scripts/download_models.py all
 
+# Download agent training data
+download-agent-data:
+	@echo "$(BLUE)Downloading neulab/agent-data-collection dataset...$(NC)"
+	$(PYTHON) scripts/download_agent_data.py --output-dir agent/training/data
+	@echo "$(GREEN)✅ Agent dataset downloaded$(NC)"
+
+# Prepare agent data for training
+prepare-agent-data:
+	@echo "$(BLUE)Preparing agent data for zen-vl training...$(NC)"
+	$(PYTHON) scripts/prepare_agent_training_data.py
+	@echo "$(GREEN)✅ Agent data prepared for training$(NC)"
+
+# Download XLAM function calling data
+download-xlam-data:
+	@echo "$(BLUE)Downloading Salesforce/xlam-function-calling-60k dataset...$(NC)"
+	@echo "$(YELLOW)Note: This is a gated dataset. Request access at:$(NC)"
+	@echo "$(YELLOW)https://huggingface.co/datasets/Salesforce/xlam-function-calling-60k$(NC)"
+	$(PYTHON) scripts/download_xlam_data.py --output-dir agent/training/data
+	@echo "$(GREEN)✅ XLAM dataset downloaded$(NC)"
+
+# Prepare XLAM data for training
+prepare-xlam-data:
+	@echo "$(BLUE)Preparing XLAM data for zen-vl training...$(NC)"
+	$(PYTHON) scripts/prepare_xlam_training_data.py
+	@echo "$(GREEN)✅ XLAM data prepared for training$(NC)"
+
+# Download all agent datasets
+download-all-agent-data: download-agent-data download-xlam-data
+	@echo "$(GREEN)✅ All agent datasets downloaded$(NC)"
+
+# Prepare all agent datasets
+prepare-all-agent-data: prepare-agent-data prepare-xlam-data
+	@echo "$(GREEN)✅ All agent data prepared for training$(NC)"
+
 # Training targets
 train-instruct:
 	@echo "$(GREEN)Training zen-vl-$(SIZE)-instruct...$(NC)"
-	python3.13 scripts/train_instruct.py $(SIZE)
+	./venv/bin/python scripts/train_instruct.py $(SIZE)
 
 train-agent:
 	@echo "$(GREEN)Training zen-vl-$(SIZE)-agent...$(NC)"
-	python3.13 scripts/train_agent.py $(SIZE)
+	./venv/bin/python scripts/train_agent.py $(SIZE)
 
 # Complete pipeline
 all: train-instruct train-agent

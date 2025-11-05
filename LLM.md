@@ -91,6 +91,20 @@ huggingface-cli download Qwen/Qwen3-VL-30B-A3B-Instruct --local-dir instruct/bas
 - Visual tool-use examples
 - Structured output training
 - GUI interaction patterns
+- **neulab/agent-data-collection** (100K-1M multi-turn agent dialogues)
+  - Source: NeuLab @ LTI/CMU
+  - URL: https://huggingface.co/datasets/neulab/agent-data-collection
+  - Configurations: code_feedback (66K), codeactinstruct (7K), agenttuning_*, openhands, synatra
+  - Purpose: Multi-step reasoning, tool use, planning, and task completion
+  - Format: Converted to Qwen3-VL message format with Zen identity
+- **Salesforce/xlam-function-calling-60k** (60K function calling examples)
+  - Source: Salesforce Research
+  - URL: https://huggingface.co/datasets/Salesforce/xlam-function-calling-60k
+  - Access: Gated dataset (requires HuggingFace approval)
+  - Details: 21 API categories, 3,673 executable APIs, >95% accuracy
+  - Purpose: Structured function calling and API execution from natural language
+  - Format: JSON with query, tools, answers - converted to Qwen3-VL message format
+  - Scripts: download_xlam_data.py, prepare_xlam_training_data.py
 
 ## Directory Structure
 
