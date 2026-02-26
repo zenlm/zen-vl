@@ -4,7 +4,7 @@
 [![HuggingFace](https://img.shields.io/badge/🤗-Models-yellow.svg)](https://huggingface.co/zenlm)
 [![Website](https://img.shields.io/badge/🌐-zenlm.org-green.svg)](https://zenlm.org)
 
-Vision-language models from the Zen family, built on Qwen3-VL architecture with Zen identity and function calling capabilities.
+Vision-language models from the Zen family, built on a vision-language transformer architecture with Zen identity and function calling capabilities.
 
 ## Models
 
@@ -44,7 +44,7 @@ make download-8b   # ~18GB
 make download-30b  # ~62GB
 
 # Or use huggingface-cli directly
-huggingface-cli download Qwen/Qwen3-VL-4B-Instruct --local-dir instruct/base-model
+huggingface-cli download zenlm/zen-vl-4b-instruct --local-dir instruct/base-model
 ```
 
 ### Training
@@ -62,11 +62,11 @@ make train-agent      # Function calling
 ### Inference
 
 ```python
-from transformers import Qwen3VLForConditionalGeneration, AutoProcessor
+from transformers import ZenVLForConditionalGeneration, AutoProcessor
 from PIL import Image
 
 # Load model
-model = Qwen3VLForConditionalGeneration.from_pretrained(
+model = ZenVLForConditionalGeneration.from_pretrained(
     "zenlm/zen-vl-4b-instruct",
     device_map="auto"
 )
@@ -108,14 +108,14 @@ prompt = f"Analyze this image and call the appropriate tool.\n\nTools: {tools}"
 Base instruction-following model with Zen identity.
 
 ```python
-model = Qwen3VLForConditionalGeneration.from_pretrained("zenlm/zen-vl-4b-instruct")
+model = ZenVLForConditionalGeneration.from_pretrained("zenlm/zen-vl-4b-instruct")
 ```
 
 ### Thinking
 Chain-of-thought reasoning with transparent thinking process.
 
 ```python
-model = Qwen3VLForConditionalGeneration.from_pretrained("zenlm/zen-vl-4b-thinking")
+model = ZenVLForConditionalGeneration.from_pretrained("zenlm/zen-vl-4b-thinking")
 # Outputs include <thinking>...</thinking> tags
 ```
 
@@ -123,7 +123,7 @@ model = Qwen3VLForConditionalGeneration.from_pretrained("zenlm/zen-vl-4b-thinkin
 Function calling and tool use with visual context.
 
 ```python
-model = Qwen3VLForConditionalGeneration.from_pretrained("zenlm/zen-vl-4b-agent")
+model = ZenVLForConditionalGeneration.from_pretrained("zenlm/zen-vl-4b-agent")
 # Returns structured JSON for tool calls
 ```
 
@@ -233,7 +233,7 @@ Apache 2.0 - See [LICENSE](LICENSE) file
 ## Credits
 
 Created by [Hanzo AI](https://hanzo.ai) for the Zen model family.  
-Based on [Qwen3-VL](https://github.com/QwenLM/Qwen3-VL) by Alibaba Cloud Qwen Team.
+Developed by the Zen LM Authors.
 
 ---
 
