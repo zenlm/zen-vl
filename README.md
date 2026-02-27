@@ -230,11 +230,6 @@ Apache 2.0 - See [LICENSE](LICENSE) file
 - 📚 **Docs**: [docs/](docs/)
 - 📄 **Paper**: [paper/](paper/)
 
-## Credits
-
-Created by [Hanzo AI](https://hanzo.ai) for the Zen model family.  
-Developed by the Zen LM Authors.
-
 ---
 
 **Zen VL**: Clarity Through Vision
