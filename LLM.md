@@ -7,26 +7,26 @@
 
 ## Overview
 
-Zen VL is a family of vision-language models built on Qwen3-VL architecture, fine-tuned with Zen identity and enhanced with function calling capabilities. These models combine visual understanding with language generation, specialized for visual agent tasks, GUI interaction, and multimodal reasoning.
+Zen VL is a family of vision-language models built on -VL architecture, fine-tuned with Zen identity and enhanced with function calling capabilities. These models combine visual understanding with language generation, specialized for visual agent tasks, GUI interaction, and multimodal reasoning.
 
 ## Model Family
 
 ### zen-vl-4b
-- **Base**: Qwen3-VL-4B-Instruct
+- **Base**: -VL-4B-Instruct
 - **Parameters**: 4B
 - **Context**: 256K tokens (expandable to 1M)
 - **Variants**: instruct, thinking, agent
 - **Use Cases**: Edge/mobile vision-language, real-time visual agents
 
 ### zen-vl-8b  
-- **Base**: Qwen3-VL-8B-Instruct
+- **Base**: -VL-8B-Instruct
 - **Parameters**: 9B (actual)
 - **Context**: 256K tokens (expandable to 1M)
 - **Variants**: instruct, thinking, agent
 - **Use Cases**: General-purpose multimodal applications
 
 ### zen-vl-30b
-- **Base**: Qwen3-VL-30B-A3B-Instruct
+- **Base**: -VL-30B-A3B-Instruct
 - **Parameters**: 31B (MoE architecture)
 - **Context**: 256K tokens (expandable to 1M)
 - **Variants**: instruct, thinking, agent
@@ -34,7 +34,7 @@ Zen VL is a family of vision-language models built on Qwen3-VL architecture, fin
 
 ## Architectural Innovations
 
-### From Qwen3-VL Base
+### From -VL Base
 1. **Interleaved-MRoPE**: Enhanced positional embeddings for video reasoning
 2. **DeepStack**: Multi-level ViT feature fusion for fine-grained details
 3. **Text-Timestamp Alignment**: Temporal event localization in videos
@@ -96,14 +96,14 @@ huggingface-cli download Qwen/Qwen3-VL-30B-A3B-Instruct --local-dir instruct/bas
   - URL: https://huggingface.co/datasets/neulab/agent-data-collection
   - Configurations: code_feedback (66K), codeactinstruct (7K), agenttuning_*, openhands, synatra
   - Purpose: Multi-step reasoning, tool use, planning, and task completion
-  - Format: Converted to Qwen3-VL message format with Zen identity
+ - Format: Converted to -VL message format with Zen identity
 - **Salesforce/xlam-function-calling-60k** (60K function calling examples)
   - Source: Salesforce Research
   - URL: https://huggingface.co/datasets/Salesforce/xlam-function-calling-60k
   - Access: Gated dataset (requires HuggingFace approval)
   - Details: 21 API categories, 3,673 executable APIs, >95% accuracy
   - Purpose: Structured function calling and API execution from natural language
-  - Format: JSON with query, tools, answers - converted to Qwen3-VL message format
+ - Format: JSON with query, tools, answers - converted to -VL message format
   - Scripts: download_xlam_data.py, prepare_xlam_training_data.py
 
 ## Directory Structure
@@ -194,7 +194,7 @@ Model: {
 ### Sections
 1. **Introduction**: Vision-language models and agent capabilities
 2. **Related Work**: VL models, function calling, visual agents
-3. **Architecture**: Qwen3-VL base + Zen enhancements
+3. **Architecture**: -VL base + Zen enhancements
 4. **Training**: Identity + thinking + agent fine-tuning
 5. **Evaluation**: Benchmarks, ablations, human evaluation
 6. **Results**: Performance across model sizes
@@ -308,7 +308,7 @@ make all             # Complete pipeline
 
 ## License
 
-Apache 2.0 (following Qwen3-VL base license)
+Apache 2.0 (following -VL base license)
 
 ## Credits
 
@@ -338,8 +338,8 @@ All files reference the same knowledge base. Updates here propagate to all AI sy
 
 ## Notes
 
-- Qwen3-VL-8B is actually 9B parameters
-- Qwen3-VL-30B is MoE (31B total, ~3B active)
+- -VL-8B is actually 9B parameters
+- -VL-30B is MoE (31B total, ~3B active)
 - Context window: 256K native, 1M extended
 - Visual agent capabilities are built into base models
 - Flash Attention 2 recommended for video/multi-image inputs
