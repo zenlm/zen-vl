@@ -1,0 +1,9 @@
+zen-vl
+Copyright (c) 2026 Zen LM, Inc.
+
+This product includes software from Qwen3-VL (https://github.com/QwenLM/Qwen3-VL),
+developed by the Qwen team at Alibaba Cloud, licensed under Apache-2.0. Zen VL
+models are fine-tuned from the Qwen3-VL base models
+(https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct):
+
+    Copyright 2025 Alibaba Cloud
