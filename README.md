@@ -1,3 +1,5 @@
+<p align="center"><img src=".github/hero.svg" alt="zen-vl" width="880"></p>
+
 # Zen VL - Vision-Language Models with Function Calling
 
 **Zen VL** is a family of vision-language models with integrated function calling capabilities, built on the Zen VL architecture.
